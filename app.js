@@ -11,7 +11,7 @@ let result = 0;
 function randomSquare() {
   // for each square in our squares array, removing the class of mole.
   squares.forEach((square) => {
-    square.classList.remove("Mole");
+    square.classList.remove("mole");
   });
 
   // going into squares array and passing through random number from 0-8 (9 squares)
@@ -20,4 +20,10 @@ function randomSquare() {
   randomPosition.classList.add("mole");
 }
 
-randomSquare();
+function moveMole() {
+  // null to stop timer intervakl from moving
+  let timerId = null;
+  // random square function will run every 500ms when moveMole function invoked.
+  timerId = setInterval(randomSquare, 500);
+}
+moveMole();
