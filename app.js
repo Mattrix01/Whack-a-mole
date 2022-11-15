@@ -6,6 +6,7 @@ const score = document.querySelector("#score");
 
 // initialising result as 0
 let result = 0;
+let hitPosition;
 
 // everytime run function, returning random squares and changing where mole class is.
 function randomSquare() {
@@ -18,11 +19,23 @@ function randomSquare() {
   // times by 9 as 9 squares we want to change range, then rounding it down with math floor.
   let randomPosition = squares[Math.floor(Math.random() * 9)];
   randomPosition.classList.add("mole");
+  // saving id of randomSquare to this variable
+  hitPosition = randomSquare.id;
 }
 
+squares.forEach((square) => {
+  square.addEventListener("mousedown", () => {
+    if (square.id == hitPosition) {
+      result++;
+      score.textContent = result;
+      hitPosition = null;
+    }
+  });
+});
+
 function moveMole() {
-  // null to stop timer intervakl from moving
-  let timerId = null;
+  // null timer only added incase we want to stop a mole with our button if we wish
+  //   let timerId = null;
   // random square function will run every 500ms when moveMole function invoked.
   timerId = setInterval(randomSquare, 500);
 }
