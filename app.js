@@ -7,21 +7,24 @@ const score = document.querySelector("#score");
 // initialising result as 0
 let result = 0;
 let hitPosition;
-let currentTime = 60;
+let currentTime = 30;
+// unset null value which will be clearInterval later to stop moving
 let timerId = null;
 
 // everytime run function, returning random squares and changing where mole class is.
+
+// for each square in our squares array, removing the class of mole.
+
 function randomSquare() {
-  // for each square in our squares array, removing the class of mole.
   squares.forEach((square) => {
     square.classList.remove("mole");
   });
-
   // going into squares array and passing through random number from 0-8 (9 squares)
   // times by 9 as 9 squares we want to change range, then rounding it down with math floor.
-  let randomPosition = squares[Math.floor(Math.random() * 9)];
-  randomPosition.classList.add("mole");
   // saving id of randomSquare to this variable
+  let randomSquare = squares[Math.floor(Math.random() * 9)];
+  randomSquare.classList.add("mole");
+
   hitPosition = randomSquare.id;
 }
 
@@ -37,7 +40,6 @@ squares.forEach((square) => {
 
 function moveMole() {
   // null timer only added incase we want to stop a mole with our button if we wish
-  //   let timerId = null;
   // random square function will run every 500ms when moveMole function invoked.
   timerId = setInterval(randomSquare, 500);
 }
@@ -50,6 +52,8 @@ function countDown() {
   // if countdown finished clear timer
   if (currentTime == 0) {
     clearInterval(countDownTimerId);
+    // stop mole movement and timer.
+    clearInterval(timerId);
     alert("Game Over! Your score is: " + result);
   }
 }
