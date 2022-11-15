@@ -12,5 +12,7 @@
 }
 
 .mole {
-  background-color: blue;
+  /* background-color: blue; */
+  background-image: url("naked-mole.png");
+  background-size: cover;
 }
