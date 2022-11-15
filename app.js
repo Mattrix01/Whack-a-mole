@@ -7,6 +7,8 @@ const score = document.querySelector("#score");
 // initialising result as 0
 let result = 0;
 let hitPosition;
+let currentTime = 60;
+let timerId = null;
 
 // everytime run function, returning random squares and changing where mole class is.
 function randomSquare() {
@@ -40,3 +42,17 @@ function moveMole() {
   timerId = setInterval(randomSquare, 500);
 }
 moveMole();
+
+function countDown() {
+  //getting current time and above of 60 and tkaing 1 from it. Counting down.
+  currentTime--;
+  timeLeft.textContent = currentTime;
+  // if countdown finished clear timer
+  if (currentTime == 0) {
+    clearInterval(countDownTimerId);
+    alert("Game Over! Your score is: " + result);
+  }
+}
+
+// for stopping timer, want countDown function to invoke every second.
+let countDownTimerId = setInterval(countDown, 1000);
