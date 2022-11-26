@@ -34,6 +34,11 @@ squares.forEach((square) => {
       result++;
       score.textContent = result;
       hitPosition = null;
+      // trying to figure out change image then dissapear after 500ms
+      square.classList.add("deadmole");
+      //   setTimeout(function () {
+      //     square.classList.removeClass("deadmole");
+      //   }, 100);
     }
   });
 });

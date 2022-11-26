@@ -22,3 +22,9 @@ body {
   background-image: url("images/naked-mole.png");
   background-size: cover;
 }
+
+.deadmole {
+  /* background-color: blue; */
+  background-image: url("images/dead-mole.png");
+  background-size: cover;
+}
